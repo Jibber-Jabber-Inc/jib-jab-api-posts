@@ -1,4 +1,4 @@
-INSERT INTO post (id, creation_date, description)
+INSERT INTO post (id, creation_date, content)
 VALUES (floor(random() * 1000000), '2021-05-13 21:46:33.991527', 'hola mundo 1'),
        (floor(random() * 1000000), '2021-05-14 21:46:35.047895', 'hola mundo 2'),
        (floor(random() * 1000000), '2021-05-15 21:46:35.789087', 'hola mundo 3'),
