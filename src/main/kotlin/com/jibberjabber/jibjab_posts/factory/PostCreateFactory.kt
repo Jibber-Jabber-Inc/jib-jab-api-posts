@@ -7,11 +7,11 @@ import java.time.LocalDateTime
 class PostCreateFactory : AbstractFactory<Post, PostCreationDto> {
 
     override fun convert(input: Post): PostCreationDto {
-        return PostCreationDto(input.description)
+        return PostCreationDto(input.content)
     }
 
     fun from(input: PostCreationDto): Post {
-        return Post(null, input.description, LocalDateTime.now())
+        return Post(null, input.content, LocalDateTime.now())
     }
 
 }

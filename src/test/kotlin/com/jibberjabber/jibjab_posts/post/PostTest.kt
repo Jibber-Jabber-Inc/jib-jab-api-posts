@@ -20,7 +20,7 @@ class PostTest(
     fun test001_runTest() {
         val postCreationDto = PostCreationDto("First jib");
         val createdPost = postService.createPost(postCreationDto)
-        assertThat(createdPost.description).isEqualTo(postCreationDto.description)
+        assertThat(createdPost.content).isEqualTo(postCreationDto.content)
     }
 
 }

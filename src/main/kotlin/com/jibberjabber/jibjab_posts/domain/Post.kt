@@ -10,7 +10,7 @@ data class Post(
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
 
-    var description: String,
+    var content: String,
 
     @CreationTimestamp
     var creationDate: LocalDateTime

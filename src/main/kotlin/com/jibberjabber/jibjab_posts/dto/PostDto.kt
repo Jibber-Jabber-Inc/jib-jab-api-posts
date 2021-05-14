@@ -4,10 +4,10 @@ import java.time.LocalDateTime
 
 data class PostDto(
     var id: Long?,
-    var description: String,
+    var content: String,
     var creationDate: LocalDateTime
 )
 
 data class PostCreationDto(
-    var description: String
+    var content: String
 )
