@@ -5,9 +5,9 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.scheduling.annotation.EnableScheduling
-import org.springframework.web.servlet.config.annotation.CorsRegistry
-
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.filter.CorsFilter
 
 
 @SpringBootApplication
@@ -20,10 +20,13 @@ fun main(args: Array<String>) {
 }
 
 @Bean
-fun corsConfigurer(): WebMvcConfigurer {
-    return object : WebMvcConfigurer {
-        override fun addCorsMappings(registry: CorsRegistry) {
-            registry.addMapping("*").allowedOrigins("*").allowedHeaders("*")
-        }
-    }
+fun corsFilter(): CorsFilter {
+    val source = UrlBasedCorsConfigurationSource()
+    val configuration = CorsConfiguration()
+    configuration.allowCredentials = true
+    configuration.addAllowedOrigin("*")
+    configuration.addAllowedHeader("*")
+    configuration.addAllowedMethod("*")
+    source.registerCorsConfiguration("/**", configuration)
+    return CorsFilter(source)
 }
