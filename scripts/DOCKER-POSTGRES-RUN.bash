@@ -1,0 +1,1 @@
+docker run --name spring-jibjab-post -d -p 5431:5432 -e POSTGRES_PASSWORD=1234 postgres:13

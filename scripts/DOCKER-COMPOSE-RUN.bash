@@ -1,0 +1,1 @@
+docker-compose -f /home/maxi/projects/ing-sist/jibber-jabber/jibjab_posts/docker-compose.yml up

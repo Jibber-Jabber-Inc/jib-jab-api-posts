@@ -1,6 +1,7 @@
 package com.jibberjabber.jibjab_posts
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
@@ -10,7 +11,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
 @EnableJpaRepositories
 @EnableScheduling
 class JibjabPostsApplication
