@@ -25,7 +25,7 @@ services:
       DB_PASSWORD: 1234
       DB_NAME: postgres
       DB_HOST: postgres_db
-      DB_PORT: 5431
+      DB_PORT: 5432
 
 volumes:
   pgdata:
