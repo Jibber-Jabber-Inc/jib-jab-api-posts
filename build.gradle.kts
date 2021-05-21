@@ -39,6 +39,7 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     implementation("org.springframework.security:spring-security-web")
     implementation("org.springframework.security:spring-security-test")
+    implementation("org.springdoc:springdoc-openapi-ui:1.5.2")
 }
 
 tasks.withType<KotlinCompile> {

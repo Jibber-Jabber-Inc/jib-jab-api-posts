@@ -9,7 +9,7 @@ import javax.persistence.*
 @Entity
 class Post(
     var content: String,
-
+    var userId: String,
     @CreationTimestamp
     var creationDate: LocalDateTime
 ) : AbstractEntity()
