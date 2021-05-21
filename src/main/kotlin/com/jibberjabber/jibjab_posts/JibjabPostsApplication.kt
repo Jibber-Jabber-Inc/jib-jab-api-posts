@@ -11,23 +11,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
 
-@SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
+@SpringBootApplication
 @EnableJpaRepositories
-@EnableScheduling
 class JibjabPostsApplication
 
 fun main(args: Array<String>) {
     runApplication<JibjabPostsApplication>(*args)
-}
-
-@Bean
-fun corsFilter(): CorsFilter {
-    val source = UrlBasedCorsConfigurationSource()
-    val configuration = CorsConfiguration()
-    configuration.allowCredentials = true
-    configuration.addAllowedOrigin("*")
-    configuration.addAllowedHeader("*")
-    configuration.addAllowedMethod("*")
-    source.registerCorsConfiguration("/**", configuration)
-    return CorsFilter(source)
 }

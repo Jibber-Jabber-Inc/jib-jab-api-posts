@@ -9,10 +9,6 @@ class PostFactory : AbstractFactory<Post, PostDto> {
         return PostDto(input.id, input.content, input.creationDate)
     }
 
-    fun from(input: PostDto): Post {
-        return Post(input.id, input.content, input.creationDate)
-    }
-
 }
 
 

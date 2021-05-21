@@ -11,7 +11,7 @@ class PostCreateFactory : AbstractFactory<Post, PostCreationDto> {
     }
 
     fun from(input: PostCreationDto): Post {
-        return Post(null, input.content, LocalDateTime.now())
+        return Post(input.content, LocalDateTime.now())
     }
 
 }
