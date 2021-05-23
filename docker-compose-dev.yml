@@ -1,0 +1,48 @@
+version: '3'
+services:
+
+  builder:
+    image: gradle:jdk11
+    working_dir: /home/gradle/project
+    volumes:
+      - ./build:/home/gradle/project/build
+      - ./src:/home/gradle/project/src
+      - ./build.gradle.kts:/home/gradle/project/build.gradle.kts
+    command: gradle build --continuous -x test -x testClasses
+
+  db:
+#    container_name: db_posts
+    image: postgres:13
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+#  api:
+#    image: gradle:jdk11
+#    working_dir: /home/gradle/project
+#    volumes:
+#      - ./build:/home/gradle/project/build
+#      - ./src:/home/gradle/project/src
+#      - ./build.gradle.kts:/home/gradle/project/build.gradle.kts
+#    depends_on:
+#      - builder
+#    ports:
+#      - 8081:8080
+#    command: gradle bootRun
+
+volumes:
+  pgdata:
+
+
+  api:
+    image: openjdk:13-alpine
+    volumes:
+      - ./build:/app
+    depends_on:
+      - builder
+    command: java -jar "/app/classes/kotlin/main:/app/libs/*:/app/resources/main" com.jibberjabber.jibjab_posts.JibjabPostsApplicationKt
