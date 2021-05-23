@@ -2,7 +2,7 @@ server:
   error:
     include-message: always
   servlet:
-    context-path: /api
+    context-path: /api/post
   port: 8081
 
 spring:
