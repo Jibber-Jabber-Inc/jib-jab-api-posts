@@ -49,7 +49,7 @@ class AuthTokenFilter : OncePerRequestFilter() {
 
     private fun sendUserServiceRequest(jwt: String): UserInfoDto? {
         val restTemplate = RestTemplate()
-        val getUserUrl = "http://$authHost:$authPort/api/posts/authenticateUser"
+        val getUserUrl = "http://$authHost:$authPort/api/users/loggedUser"
         logger.info("Authenticating with: $getUserUrl")
         val getUserUri = URI(getUserUrl)
         val headers = HttpHeaders()

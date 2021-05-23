@@ -33,7 +33,7 @@ class UserUtils {
 
     fun getUserInfoFromId(userId: String): UserInfoDto? {
         val restTemplate = RestTemplate()
-        val getUserUrl = "http://$authHost:$authPort/api/posts/userInfo"
+        val getUserUrl = "http://$authHost:$authPort/api/users/userInfoById/$userId"
         logger.info("Authenticating with: $getUserUrl")
         val getUserUri = URI(getUserUrl)
         val headers = HttpHeaders()
@@ -41,7 +41,6 @@ class UserUtils {
             "Cookie",
             "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString()
         )
-        headers.add("userId", userId)
         val httpEntity = HttpEntity<String>(headers)
         val response: ResponseEntity<UserInfoDto> =
             restTemplate.exchange(getUserUri, HttpMethod.POST, httpEntity, UserInfoDto::class.java)
