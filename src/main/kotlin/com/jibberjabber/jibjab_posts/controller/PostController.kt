@@ -7,7 +7,7 @@ import com.jibberjabber.jibjab_posts.service.PostService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 class PostController(
     val postService: PostService
 ) {
