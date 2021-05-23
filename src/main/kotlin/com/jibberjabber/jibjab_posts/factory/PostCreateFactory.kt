@@ -10,8 +10,8 @@ class PostCreateFactory : AbstractFactory<Post, PostCreationDto> {
         return PostCreationDto(input.content)
     }
 
-    fun from(input: PostCreationDto): Post {
-        return Post(input.content, LocalDateTime.now())
+    fun from(input: PostCreationDto, userId: String): Post {
+        return Post(input.content, userId, LocalDateTime.now())
     }
 
 }

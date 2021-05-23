@@ -4,24 +4,24 @@ import com.jibberjabber.jibjab_posts.dto.PostCreationDto
 import com.jibberjabber.jibjab_posts.dto.PostDto
 import com.jibberjabber.jibjab_posts.factory.PostFactory
 import com.jibberjabber.jibjab_posts.service.PostService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/posts")
-class PostController(
-    val postService: PostService
+@RequestMapping("/post")
+class PostController @Autowired constructor(
+    val postService: PostService,
+    val postFactory: PostFactory
 ) {
-    private val postFactory: PostFactory = PostFactory()
 
-    @GetMapping("")
+    @GetMapping
     fun getPosts(): List<PostDto> {
         return postService.getAll().map { post -> postFactory.convert(post) }
     }
 
     @PostMapping("/create")
-    fun createProperty(@RequestBody postCreationDto: PostCreationDto): PostDto {
-        val createPost = postService.createPost(postCreationDto)
-        return postFactory.convert(createPost)
+    fun createPost(@RequestBody postCreationDto: PostCreationDto): PostDto {
+        return postFactory.convert(postService.createPost(postCreationDto))
     }
 
 }

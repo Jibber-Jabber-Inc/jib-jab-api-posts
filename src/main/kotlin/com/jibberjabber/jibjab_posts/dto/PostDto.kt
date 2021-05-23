@@ -4,8 +4,9 @@ import java.time.LocalDateTime
 
 data class PostDto(
     var id: String?,
-    var content: String,
-    var creationDate: LocalDateTime
+    var content: String?,
+    var userInfoDto: UserInfoDto?,
+    var creationDate: LocalDateTime?
 )
 
 data class PostCreationDto(

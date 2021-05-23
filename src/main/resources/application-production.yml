@@ -3,7 +3,7 @@ server:
     include-message: always
   servlet:
     context-path: /api
-  port: 8080
+  port: 8081
 
 spring:
   jpa:
@@ -19,3 +19,6 @@ spring:
     password: ${DB_PASSWORD}
     platform: postgres
     driver-class-name: org.postgresql.Driver
+
+AUTH_PORT: 8080
+AUTH_HOST: localhost
