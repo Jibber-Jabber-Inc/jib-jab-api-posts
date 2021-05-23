@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 class PostController @Autowired constructor(
     val postService: PostService,
     val postFactory: PostFactory

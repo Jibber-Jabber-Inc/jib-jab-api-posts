@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServletResponse
 
 @Component
 class AuthTokenFilter : OncePerRequestFilter() {
-    @Value("\${AUTH_HOST}")
-    private val authHost: String? = null
+//    @Value("\${AUTH_HOST}")
+    private val authHost: String? = "localhost"
 
-    @Value("\${AUTH_PORT}")
-    private val authPort: String? = null
+//    @Value("\${AUTH_PORT}")
+    private val authPort: String? = "8080"
 
     override fun doFilterInternal(
         request: HttpServletRequest,

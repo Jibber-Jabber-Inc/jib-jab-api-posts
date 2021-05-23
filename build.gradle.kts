@@ -40,6 +40,7 @@ dependencies {
     implementation("org.springframework.security:spring-security-web")
     implementation("org.springframework.security:spring-security-test")
     implementation("org.springdoc:springdoc-openapi-ui:1.5.2")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 tasks.withType<KotlinCompile> {

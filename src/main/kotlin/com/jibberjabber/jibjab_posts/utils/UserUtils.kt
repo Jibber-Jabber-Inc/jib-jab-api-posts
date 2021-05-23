@@ -5,7 +5,6 @@ import com.jibberjabber.jibjab_posts.dto.UserInfoDto
 import com.jibberjabber.jibjab_posts.exception.BadRequestException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
@@ -18,11 +17,11 @@ import java.net.URI
 @Component
 class UserUtils {
 
-    @Value("\${AUTH_HOST}")
-    private val authHost: String? = null
+    //    @Value("\${AUTH_HOST}")
+    private val authHost: String? = "localhost"
 
-    @Value("\${AUTH_PORT}")
-    private val authPort: String? = null
+    //    @Value("\${AUTH_PORT}")
+    private val authPort: String? = "8080"
 
     private val logger: Logger = LoggerFactory.getLogger(AuthEntryPoint::class.java)
 
