@@ -22,6 +22,6 @@ class PostServiceImpl(
 
     override fun createPost(postCreationDto: PostCreationDto): Post {
         val userInfo: UserInfoDto = userUtils.getTokenUserInformation()
-        return postRepository.save(postCreateFactory.from(postCreationDto, userInfo.userId))
+        return postRepository.save(postCreateFactory.from(postCreationDto, userInfo.id))
     }
 }
