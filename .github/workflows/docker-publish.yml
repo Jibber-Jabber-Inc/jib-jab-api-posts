@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: jitjab_posts
+  IMAGE_NAME: jibjab_posts
 
 jobs:
   # Run tests.
