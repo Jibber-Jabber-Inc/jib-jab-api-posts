@@ -23,8 +23,12 @@ class PostServiceImpl(
     val postCreateFactory: PostCreateFactory
 ) : PostService {
 
-    override fun getAll(): List<Post> {
-        return postRepository.findAll()
+    override fun getAllByFollowers(): List<Post> {
+        return userUtils.getFollowedUsersById().flatMap { user ->  getAllPostsByUserId(user.id)}.distinct()
+    }
+
+    override fun getAllPostsByUserId(userId: String): List<Post> {
+        return postRepository.findAllByUserCreatorId(userId)
     }
 
     override fun createPost(postCreationDto: PostCreationDto): Post {

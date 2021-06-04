@@ -19,7 +19,8 @@ class PostController @Autowired constructor(
 
     @GetMapping
     fun getPosts(): List<PostInfoDto> {
-        return postService.getAll().map { post -> postInfoFactory.convert(post) }
+        return postService.getAllByFollowers().map { post -> postInfoFactory.convert(post) }
+            .sortedBy { t -> t.creationDate }
     }
 
     @PostMapping("/create")
@@ -34,7 +35,7 @@ class PostController @Autowired constructor(
 
     @PostMapping("/like/{postId}")
     fun likePost(@PathVariable("postId") postId: String) {
-         postService.likePost(postId)
+        postService.likePost(postId)
     }
 
     @PostMapping("/dislike/{postId}")

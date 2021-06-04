@@ -5,7 +5,8 @@ import com.jibberjabber.jibjab_posts.dto.PostCreationDto
 import com.jibberjabber.jibjab_posts.dto.PostLikeInfoDto
 
 interface PostService {
-    fun getAll(): List<Post>
+    fun getAllByFollowers(): List<Post>
+    fun getAllPostsByUserId(userId: String): List<Post>
     fun createPost(postCreationDto: PostCreationDto): Post
     fun deletePost(id: String)
     fun likePost(postId: String)

@@ -2,6 +2,7 @@ package com.jibberjabber.jibjab_posts.utils
 
 import com.jibberjabber.jibjab_posts.config.AuthEntryPoint
 import com.jibberjabber.jibjab_posts.dto.UserInfoDto
+import com.jibberjabber.jibjab_posts.dto.UserInfoDtoList
 import com.jibberjabber.jibjab_posts.exception.BadRequestException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 import java.net.URI
+
 
 @Component
 class UserUtils {
@@ -37,10 +39,7 @@ class UserUtils {
         logger.info("Authenticating with: $getUserUrl")
         val getUserUri = URI(getUserUrl)
         val headers = HttpHeaders()
-        headers.add(
-            "Cookie",
-            "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString()
-        )
+        headers.add("Cookie", "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString())
         val httpEntity = HttpEntity<String>(headers)
         val response: ResponseEntity<UserInfoDto> =
             restTemplate.exchange(getUserUri, HttpMethod.POST, httpEntity, UserInfoDto::class.java)
@@ -48,6 +47,20 @@ class UserUtils {
         val userInfoDto = response.body
         logger.info("Got response: " + response.statusCodeValue + ": " + userInfoDto?.email)
         return userInfoDto
+    }
+
+    fun getFollowedUsersById(): List<UserInfoDto> {
+        val restTemplate = RestTemplate()
+        val getUserUrl = "http://$authHost:$authPort/api/user/followedUsers"
+        logger.info("Authenticating with: {}", getUserUrl)
+        val getUserUri = URI(getUserUrl)
+        val headers = HttpHeaders()
+        headers.add("Cookie", "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString())
+        val httpEntity = HttpEntity<String>(headers)
+        val response: ResponseEntity<UserInfoDtoList> =
+            restTemplate.exchange(getUserUri, HttpMethod.GET, httpEntity, UserInfoDtoList::class.java)
+        if (response.statusCodeValue != 200) throw BadRequestException("Authentication Server couldn't authenticate jwt")
+        return response.body!!.userInfoDto
     }
 
 }

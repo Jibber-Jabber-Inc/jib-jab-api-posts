@@ -8,3 +8,7 @@ data class UserInfoDto(
     var lastName: String,
     var role: String?
 )
+
+data class UserInfoDtoList(
+    var userInfoDto: List<UserInfoDto>
+)
