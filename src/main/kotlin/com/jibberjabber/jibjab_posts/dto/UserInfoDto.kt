@@ -1,7 +1,7 @@
 package com.jibberjabber.jibjab_posts.dto
 
 data class UserInfoDto(
-    var userId: String,
+    var id: String,
     var username: String,
     var email: String,
     var firstName: String,
