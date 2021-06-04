@@ -23,6 +23,12 @@ class PostController @Autowired constructor(
             .sortedBy { t -> t.creationDate }
     }
 
+    @GetMapping("/user/{userId}")
+    fun getPostByUrId(@PathVariable("userId") userId: String): List<PostInfoDto> {
+        return postService.getAllPostsByUserId(userId).map { post -> postInfoFactory.convert(post) }
+            .sortedBy { t -> t.creationDate }
+    }
+
     @PostMapping("/create")
     fun createPost(@RequestBody postCreationDto: PostCreationDto): PostDto {
         return postFactory.convert(postService.createPost(postCreationDto))
