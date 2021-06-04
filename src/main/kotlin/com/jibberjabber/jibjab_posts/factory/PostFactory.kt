@@ -15,7 +15,7 @@ class PostFactory(
 ) : AbstractFactory<Post, PostDto> {
 
     override fun convert(input: Post): PostDto {
-        val userInfo: UserInfoDto? = userUtils.getUserInfoFromId(input.userCreator.id)
+        val userInfo: UserInfoDto? = userUtils.getUserInfoFromId(input.userCreator)
         return PostDto(input.id, input.content, userInfo, input.creationDate)
     }
 
@@ -28,7 +28,7 @@ class PostInfoFactory(
 ) : AbstractFactory<Post, PostInfoDto> {
 
     override fun convert(input: Post): PostInfoDto {
-        val userInfo: UserInfoDto? = userUtils.getUserInfoFromId(input.userCreator.id)
+        val userInfo: UserInfoDto? = userUtils.getUserInfoFromId(input.userCreator)
         val postLikeInfo: PostLikeInfoDto = postService.getPostLikeInfo(input)
         return PostInfoDto(input.id, input.content, userInfo, input.creationDate, postLikeInfo.isLiked, postLikeInfo.amountLikes)
     }

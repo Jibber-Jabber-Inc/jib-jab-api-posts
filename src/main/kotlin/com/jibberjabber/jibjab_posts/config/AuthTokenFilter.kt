@@ -56,8 +56,7 @@ class AuthTokenFilter : OncePerRequestFilter() {
         val headers = HttpHeaders()
         headers.add("Cookie", "jwt=$jwt")
         val httpEntity = HttpEntity<String>(headers)
-        val response: ResponseEntity<UserInfoDto> =
-            restTemplate.exchange(getUserUri, HttpMethod.GET, httpEntity, UserInfoDto::class.java)
+        val response: ResponseEntity<UserInfoDto> = restTemplate.exchange(getUserUri, HttpMethod.GET, httpEntity, UserInfoDto::class.java)
         if (response.statusCodeValue != 200) throw BadRequestException("Authentication Server couldn't authenticate jwt")
         return response.body
     }

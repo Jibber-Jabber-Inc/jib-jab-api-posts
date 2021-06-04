@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PostRepository : JpaRepository<Post, String> {
 
-    fun findAllByUserCreatorId(userCreatorId: String): List<Post>
+    fun findAllByUserCreator(userCreatorId: String): List<Post>
 
 }

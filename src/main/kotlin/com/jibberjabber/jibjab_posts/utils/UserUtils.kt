@@ -35,14 +35,14 @@ class UserUtils {
 
     fun getUserInfoFromId(userId: String): UserInfoDto? {
         val restTemplate = RestTemplate()
-        val getUserUrl = "http://$authHost:$authPort/api/user/users/userInfoById/$userId"
+        val getUserUrl = "http://$authHost:$authPort/api/user/users/info/$userId"
         logger.info("Authenticating with: $getUserUrl")
         val getUserUri = URI(getUserUrl)
         val headers = HttpHeaders()
         headers.add("Cookie", "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString())
         val httpEntity = HttpEntity<String>(headers)
         val response: ResponseEntity<UserInfoDto> =
-            restTemplate.exchange(getUserUri, HttpMethod.POST, httpEntity, UserInfoDto::class.java)
+            restTemplate.exchange(getUserUri, HttpMethod.GET, httpEntity, UserInfoDto::class.java)
         if (response.statusCodeValue != 200) throw BadRequestException("Authentication Server couldn't authenticate jwt")
         val userInfoDto = response.body
         logger.info("Got response: " + response.statusCodeValue + ": " + userInfoDto?.email)
@@ -51,8 +51,8 @@ class UserUtils {
 
     fun getFollowedUsersById(): List<UserInfoDto> {
         val restTemplate = RestTemplate()
-        val getUserUrl = "http://$authHost:$authPort/api/user/followedUsers"
-        logger.info("Authenticating with: {}", getUserUrl)
+        val getUserUrl = "http://$authHost:$authPort/api/user/users/followedUsers"
+        logger.info("Authenticating with: $getUserUrl")
         val getUserUri = URI(getUserUrl)
         val headers = HttpHeaders()
         headers.add("Cookie", "jwt=" + SecurityContextHolder.getContext().authentication.credentials.toString())
