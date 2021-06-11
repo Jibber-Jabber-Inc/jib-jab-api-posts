@@ -2,6 +2,7 @@ package com.jibberjabber.jibjab_posts.domain
 
 import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDateTime
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.ManyToOne
 import javax.persistence.Table
@@ -18,7 +19,7 @@ class Post(
 @Table(name = "post_user_like")
 @Entity
 class PostUserLike(
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL])
     var post: Post,
     var userId: String
 ) : AbstractEntity()

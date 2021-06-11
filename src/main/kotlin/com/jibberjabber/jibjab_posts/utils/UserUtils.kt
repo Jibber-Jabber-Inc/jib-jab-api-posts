@@ -21,10 +21,10 @@ import java.net.URI
 class UserUtils {
 
     @Value("\${AUTH_HOST}")
-    private val authHost: String? = "localhost"
+    private val authHost: String = "localhost"
 
     @Value("\${AUTH_PORT}")
-    private val authPort: String? = "8080"
+    private val authPort: String = "8080"
 
     private val logger: Logger = LoggerFactory.getLogger(AuthEntryPoint::class.java)
 
