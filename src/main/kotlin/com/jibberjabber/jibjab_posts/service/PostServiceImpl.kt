@@ -33,7 +33,8 @@ class PostServiceImpl(
     }
 
     override fun deletePost(id: String) {
-        postRepository.deleteById(id);
+        postUserLikeRepository.deleteAllByPostId(id)
+        postRepository.deleteById(id)
     }
 
     override fun likePost(postId: String) {

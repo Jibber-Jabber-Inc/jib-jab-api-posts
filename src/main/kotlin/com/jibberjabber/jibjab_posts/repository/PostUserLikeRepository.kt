@@ -13,4 +13,6 @@ interface PostUserLikeRepository : JpaRepository<PostUserLike, String> {
     fun findFirstByPostIdAndUserId(postId: String, userId: String): Optional<PostUserLike>
 
     fun countByPostId(postId: String): Long
+
+    fun deleteAllByPostId(id: String)
 }

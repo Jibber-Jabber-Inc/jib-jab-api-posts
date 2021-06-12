@@ -19,7 +19,7 @@ class Post(
 @Table(name = "post_user_like")
 @Entity
 class PostUserLike(
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne
     var post: Post,
     var userId: String
 ) : AbstractEntity()
